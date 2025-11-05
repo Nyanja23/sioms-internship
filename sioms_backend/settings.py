@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'customers',
-    'auth.apps.AuthConfig', # Avoiding naming conflicts
+    'accounts.apps.AccountsConfig', # Avoiding naming conflicts
 ]
 
 MIDDLEWARE = [
