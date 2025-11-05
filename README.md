@@ -5,7 +5,7 @@ Description: B2B web app for small businesses to manage products, orders, custom
 
 Tech stack: Backend (Django, DRF, Simple JWT, PostgreSQL), Frontend (Vue 3, Pinia, Vue Router, Bootstrap).
 
-
+ 
 ## Setup
 ### Backend
 1. Clone repo: `git clone https://github.com/Nyanja23/sioms-internship.git`

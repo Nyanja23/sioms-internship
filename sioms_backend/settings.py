@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'products',
+    'orders',
+    'customers',
+    'auth.apps.AuthConfig', # Avoiding naming conflicts
 ]
 
 MIDDLEWARE = [
