@@ -34,3 +34,23 @@ coverage
 
 # Vitest
 __screenshots__/
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+env/
+
+# Django
+/staticfiles/
+media/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+db.sqlite3
