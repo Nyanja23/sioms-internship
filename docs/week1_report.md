@@ -15,3 +15,9 @@
 **Challenges**:
 - I had trouble with migration conflicts but resolved by help of Chatgpt
 - Understanding serializers took time but clarified by YouTube Tutorial 
+
+**API Testing**:
+- Tested registration and token endpoints with Postman.
+- Created/listed categories and products successfully.
+- Learned to use JWT tokens in Authorization headers.
+- Challenges: "Forgot Bearer prefix in header, fixed by Postman AI debugger
