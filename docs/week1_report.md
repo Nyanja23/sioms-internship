@@ -21,3 +21,6 @@
 - Created/listed categories and products successfully.
 - Learned to use JWT tokens in Authorization headers.
 - Challenges: "Forgot Bearer prefix in header, fixed by Postman AI debugger
+
+
+refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2MzAwMTgzMywiaWF0IjoxNzYyOTE1NDMzLCJqdGkiOiIxNzM3NGIzZGZlZTI0OTFmOWE2NTEzYmIxNmRiYzk4OCIsInVzZXJfaWQiOiIxIn0.A45EFpB9CyQI8OPftfHx7Il9qjfmxr4Ld4jji0VTMSU
