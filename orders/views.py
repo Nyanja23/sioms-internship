@@ -10,6 +10,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        if user.groups.filter(name='Staff').exists():
+        print("User:", user, "Email:", user.email)
+        if user.is_superuser or user.groups.filter(name='Staff').exists():
             return Order.objects.all()
         return Order.objects.filter(customer__email=user.email)
