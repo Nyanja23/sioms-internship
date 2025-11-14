@@ -54,3 +54,5 @@ media/
 # OS
 .DS_Store
 
+# Vite cache
+.vite/
