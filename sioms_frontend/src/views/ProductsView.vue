@@ -108,8 +108,8 @@ onMounted(()=>{
                     </div>
 
                     <!-- Form btns -->
-                    <button type="submit" class="btn btn-success mt-3">Add</button>
-                    <button type="button" class="btn btn-secondary ms-2"> Cancel</button>
+                    <button type="submit" class="btn btn-success mt-3" :disabled="isLoading">Add</button>
+                    <button type="button" class="btn btn-secondary ms-2" @click="showAddForm = false"> Cancel</button>
 
 
                 </form>
