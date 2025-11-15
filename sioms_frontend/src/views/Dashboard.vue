@@ -7,6 +7,8 @@ const authtore = useAuthStore()
     <div class="container mt-5">
         <h2>Dashboard</h2>
         <p>Welcome, {{ authtore.user?.username ||  'User'}}!</p>
-        <button class="btn btn-danger">Logout</button>
+        <router-link to="/products" class="btn btn-primary mt-3 p-3">Manage Products</router-link>
+        
+        <button @click="authtore.logout" class="btn btn-danger">Logout</button>
     </div>
 </template>
