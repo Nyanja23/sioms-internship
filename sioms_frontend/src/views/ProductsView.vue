@@ -127,7 +127,13 @@ onMounted(()=>{
                     <th>Price</th>
                 </tr>
             </thead>
-
+                <tr v-for="product in products" :key="product.id">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category?.name || 'None' }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>${{ product.price }}</td>
+                </tr>
             <tbody>
 
             </tbody>
