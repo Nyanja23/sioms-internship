@@ -3,12 +3,12 @@ import { useAuthStore } from '@/store/auth';
 const authtore = useAuthStore()
 </script>
 
-<template>
-    <div class="container mt-5">
-        <h2>Dashboard</h2>
-        <p>Welcome, {{ authtore.user?.username ||  'User'}}!</p>
-        <router-link to="/products" class="btn btn-primary mt-3">Manage Products</router-link>
-
-        <button @click="authtore.logout" class="btn btn-danger">Logout</button>
-    </div>
+vue<template>
+  <div class="container mt-5">
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ authStore.user?.username || 'User' }}!</p>
+    <router-link to="/products" class="btn btn-primary">Manage Products</router-link>
+    <router-link to="/categories" class="btn btn-primary ms-2">Manage Categories</router-link>
+    <button class="btn btn-danger ms-2" @click="authStore.logout">Logout</button>
+  </div>
 </template>
