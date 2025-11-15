@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/store/auth';
 
 const categories = ref([]);
 const newCategory = ref({ name: '', description: '' });

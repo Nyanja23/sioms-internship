@@ -36,6 +36,7 @@ const router = createRouter({
       path: '/categories',
       name: 'Categories',
       meta: {requiresAuth:true},
+      component: ()=> import('../views/Categories.vue')
     }
   ],
 })

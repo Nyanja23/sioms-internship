@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/store/auth';
 
 const products = ref([]);
 const categories = ref([]);
@@ -106,7 +106,7 @@ onMounted(() => {
           <td>{{ product.name }}</td>
           <td>{{ product.category?.name || 'None' }}</td>
           <td>{{ product.stock }}</td>
-          <td>${{ product.price }}</td>
+          <td>UGX {{ product.price }}</td>
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 <script setup>
 import { useAuthStore } from '@/store/auth';
-const authtore = useAuthStore()
+const authStore = useAuthStore()
 </script>
 
 vue<template>
