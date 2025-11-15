@@ -5,15 +5,30 @@ import { useAuthStore } from '@/store/auth';
 const email = ref('');
 const username = ref('');
 const password = ref('');
+
 const role = ref('');
+const isLoading = ref(false)
+const successMessage = ref('')
+
 const router = useRouter()
 const authStore = useAuthStore();
 
 const handleRegister = async ()=>{
+    isLoading.value = true;
+    successMessage.value = '';
+
     try{
         await authStore.register(username.value, password.value, email.value, role.value)
+        successMessage.value = 'Registration successful! Redirecting to dashboard...';
+
+        setTimeout(()=>{
+            router.push('/dashboard');
+        }, 1000) //Delay for user to  see the message
+
     }catch(error){
-        alert('Registration Failed: '+ error.message);
+        alert(`Registration Failed: ${error.message} || 'Unknown Error'`);
+    }finally{
+        isLoading.value = false;
     }
 }
 </script>
@@ -21,6 +36,11 @@ const handleRegister = async ()=>{
 <template>
     <div class="container mt-5">
         <h2>Register</h2>
+
+        <div v-if="successMessage" class="alert alert-success">
+            {{ successMessage }}
+        </div>
+
         <form @submit.prevent="handleRegister">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -44,7 +64,7 @@ const handleRegister = async ()=>{
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-lg btn-primary mt-3">Register</button>
+            <button type="submit" class="btn btn-lg btn-primary mt-3" :disabled="isLoading">{{ isLoading ? 'Registering...': 'Register'}}</button>
         </form>
 
         <p class="3">

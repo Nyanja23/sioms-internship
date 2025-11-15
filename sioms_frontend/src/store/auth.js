@@ -19,6 +19,7 @@ export const useAuthStore = defineStore('auth', ()=>{
             axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
 
         }catch(error){
+            console.error('Login error:', error.response || error);
             throw new Error('Login Failed')
         }
     }
@@ -40,6 +41,7 @@ export const useAuthStore = defineStore('auth', ()=>{
            axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
            
         }catch(err){
+            console.error('Register error:', err.response || err);
             throw new Error('Registration Failed')
         }
     }
