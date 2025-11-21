@@ -6,6 +6,16 @@ export const useAuthStore = defineStore('auth', ()=>{
     const user = ref(null)
     const token = ref(null)
 
+    const loadFromStorage = () => {
+    const savedToken = localStorage.getItem('token')
+    if (savedToken) {
+      token.value = savedToken
+      axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`
+      // Optional: fetch user info if you store more than username
+      user.value = { username: 'Restored' } // or decode JWT if needed
+    }
+  }
+
     async function login(username, password){
         try{
             const response = await axios.post('http://localhost:8000/api/token/', {
@@ -52,6 +62,9 @@ export const useAuthStore = defineStore('auth', ()=>{
         localStorage.removeItem('token');
         delete axios.defaults.headers.common['Authorization'];
     }
+
+    // ←← CALL this IMMEDIATELY so store is ready before router guard
+    loadFromStorage()
 
     return { user, token, login, register, logout}
 })

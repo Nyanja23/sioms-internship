@@ -14,9 +14,9 @@ const authStore = useAuthStore();
           <small class="text-muted">Welcome back, {{ authStore.user?.username || 'User' }}.</small>
         </div>
       </div>
-      <div class="mt-3 mt-md-0">
+      <!-- <div class="mt-3 mt-md-0">
         <button class="btn btn-outline-danger" @click="authStore.logout">Logout</button>
-      </div>
+      </div> -->
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
