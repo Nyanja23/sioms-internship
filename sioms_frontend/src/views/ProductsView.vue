@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from '@/store/auth';
 
@@ -9,6 +9,16 @@ const newProduct = ref({ name: '', category_id: null, stock: 0, price: 0 });
 const showAddForm = ref(false);
 const isLoading = ref(false);
 const authStore = useAuthStore();
+
+
+const searchQuery = ref('')
+
+const filteredProducts = computed(() => {
+  if (!searchQuery.value) return products.value
+  return products.value.filter(p =>
+    p.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
 
 const fetchProducts = async () => {
   try {
@@ -30,21 +40,40 @@ const fetchCategories = async () => {
   }
 };
 
-const addProduct = async () => {
-  isLoading.value = true;
+const saveProduct = async () => {
+  isLoading.value = true
   try {
-    await axios.post('http://localhost:8000/api/products/', newProduct.value);
-    newProduct.value = { name: '', category_id: null, stock: 0, price: 0 };
-    showAddForm.value = false;
-    await fetchProducts();
-    alert('Product added successfully');
+    if (newProduct.value.id) {
+      await axios.put(`http://localhost:8000/api/products/${newProduct.value.id}/`, newProduct.value)
+    } else {
+      await axios.post('http://localhost:8000/api/products/', newProduct.value)
+    }
+    newProduct.value = { name: '', category_id: null, stock: 0, price: 0 }
+    showAddForm.value = false
+    await fetchProducts()
   } catch (error) {
-    console.error('Error adding product:', error.response || error);
-    alert('Failed to add product');
+    console.error(error.response || error)
+    alert('Save failed')
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
-};
+}
+
+const editProduct = (product) => {
+  newProduct.value = { ...product, category_id: product.category?.id }
+  showAddForm.value = true
+}
+
+const deleteProduct = async (id) => {
+  if (!confirm('Delete this product?')) return
+  try {
+    await axios.delete(`http://localhost:8000/api/products/${id}/`)
+    await fetchProducts()
+    alert('Product deleted')
+  } catch (error) {
+    alert('Delete failed')
+  }
+}
 
 onMounted(() => {
   if (authStore.token) {
@@ -64,7 +93,7 @@ onMounted(() => {
         <div v-if="!categories.length" class="alert alert-warning">
           No categories available. <router-link to="/categories">Create a category</router-link> first.
         </div>
-        <form v-else @submit.prevent="addProduct">
+        <form v-else @submit.prevent="saveProduct">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input v-model="newProduct.name" type="text" class="form-control" id="name" required>
@@ -85,11 +114,23 @@ onMounted(() => {
             <label for="price" class="form-label">Price</label>
             <input v-model.number="newProduct.price" type="number" step="0.01" class="form-control" id="price" required>
           </div>
-          <button type="submit" class="btn btn-success" :disabled="isLoading">Add</button>
+
+          <!-- Form Buttons -->
+          <button type="submit" class="btn btn-success" :disabled="isLoading">
+              {{ newProduct.id ? 'Update' : 'Add' }}
+          </button>
+
           <button type="button" class="btn btn-secondary ms-2" @click="showAddForm = false">Cancel</button>
+
         </form>
       </div>
     </div>
+
+    <!-- Search Box -->
+     <div class="mb-3">
+      <input v-model="searchQuery" class="form-control" placeholder="Search products..." />
+    </div>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -101,12 +142,16 @@ onMounted(() => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in products" :key="product.id">
+        <tr v-for="product in filteredProducts" :key="product.id">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.category?.name || 'None' }}</td>
           <td>{{ product.stock }}</td>
-          <td>UGX {{ product.price }}</td>
+          <td>${{ product.price }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" @click="editProduct(product)">Edit</button>
+            <button class="btn btn-sm btn-danger" @click="deleteProduct(product.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
