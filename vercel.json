@@ -1,3 +1,14 @@
 {
-  "rootDirectory": "sioms_frontend"
+  "builds": [
+    {
+      "src": "sioms_frontend/package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "sioms_frontend/dist/$1"
+    }
+  ]
 }
