@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "src": "sioms_frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/sioms_frontend/dist/$1"
+    }
+  ]
+}
