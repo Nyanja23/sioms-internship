@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from 'vue'
 import axios from "axios";
 import router from "@/router";
+import { API_BASE } from "@/config";
 
 export const useAuthStore = defineStore('auth', ()=>{
     const user = ref(null)
@@ -20,7 +21,7 @@ export const useAuthStore = defineStore('auth', ()=>{
 
     async function login(username, password){
         try{
-            const response = await axios.post('https://sioms-internship.onrender.com/api/token/', {
+            const response = await axios.post(`${API_BASE}/api/token/`, {
                 username, password
             })
             token.value = response.data.access; // access token
