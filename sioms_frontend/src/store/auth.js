@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth', ()=>{
 
     async function login(username, password){
         try{
-            const response = await axios.post('http://localhost:8000/api/token/', {
+            const response = await axios.post('https://sioms-internship.onrender.com/api/token/', {
                 username, password
             })
             token.value = response.data.access; // access token
@@ -40,7 +40,7 @@ export const useAuthStore = defineStore('auth', ()=>{
 
     async function register(username, password, email, role) {
         try{
-           const response = await axios.post('http://localhost:8000/api/auth/register/', {
+           const response = await axios.post('https://sioms-internship.onrender.com/api/auth/register/', {
              username,
              password,
              email,
@@ -66,7 +66,7 @@ export const useAuthStore = defineStore('auth', ()=>{
             throw new Error('No Refresh Token!')
         }
         try{
-            const res  = await axios.post('http://localhost:8000/api/token/refresh/', {
+            const res  = await axios.post('https://sioms-internship.onrender.com/api/token/refresh/', {
                 refresh
             })
 

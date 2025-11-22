@@ -19,8 +19,8 @@ const topProductsChart = ref(null)
 const fetchAnalytics = async () => {
   try {
     const [ordersRes, productsRes] = await Promise.all([
-      axios.get('http://localhost:8000/api/orders/'),
-      axios.get('http://localhost:8000/api/products/')
+      axios.get('https://sioms-internship.onrender.com/api/orders/'),
+      axios.get('https://sioms-internship.onrender.com/api/products/')
     ])
 
     const orders = ordersRes.data

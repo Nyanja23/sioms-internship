@@ -30,7 +30,7 @@ const editingCustomer = ref(null)
 
 const fetchCustomers = async () => {
   try {
-    const res = await axios.get('http://localhost:8000/api/customers/')
+    const res = await axios.get('https://sioms-internship.onrender.com/api/customers/')
     customers.value = res.data
   } catch (err) {
     console.error(err)
@@ -43,11 +43,11 @@ const saveCustomer = async () => {
   try {
     if (editingCustomer.value?.id) {
       await axios.put(
-        `http://localhost:8000/api/customers/${editingCustomer.value.id}/`,
+        `https://sioms-internship.onrender.com/api/customers/${editingCustomer.value.id}/`,
         form.value
       )
     } else {
-      await axios.post('http://localhost:8000/api/customers/', form.value)
+      await axios.post('https://sioms-internship.onrender.com/api/customers/', form.value)
     }
     resetForm()
     await fetchCustomers()
@@ -68,7 +68,7 @@ const editCustomer = (customer) => {
 const deleteCustomer = async (id) => {
   if (!confirm('Delete this customer?')) return
   try {
-    await axios.delete(`http://localhost:8000/api/customers/${id}/`)
+    await axios.delete(`https://sioms-internship.onrender.com/api/customers/${id}/`)
     await fetchCustomers()
   } catch (err) {
     alert('Delete failed')

@@ -11,7 +11,7 @@ const authStore = useAuthStore();
 
 const fetchCategories = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/categories/');
+    const response = await axios.get('https://sioms-internship.onrender.com/api/categories/');
     categories.value = response.data;
   } catch (error) {
     console.error('Error fetching categories:', error.response || error);
@@ -22,7 +22,7 @@ const fetchCategories = async () => {
 const addCategory = async () => {
   isLoading.value = true;
   try {
-    await axios.post('http://localhost:8000/api/categories/', newCategory.value);
+    await axios.post('https://sioms-internship.onrender.com/api/categories/', newCategory.value);
     newCategory.value = { name: '', description: '' };
     showAddForm.value = false;
     await fetchCategories();

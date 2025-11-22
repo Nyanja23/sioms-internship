@@ -22,7 +22,7 @@ const filteredProducts = computed(() => {
 
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/products/');
+    const response = await axios.get('https://sioms-internship.onrender.com/api/products/');
     products.value = response.data;
   } catch (error) {
     console.error('Error fetching products:', error.response || error);
@@ -32,7 +32,7 @@ const fetchProducts = async () => {
 
 const fetchCategories = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/categories/');
+    const response = await axios.get('https://sioms-internship.onrender.com/api/categories/');
     categories.value = response.data;
   } catch (error) {
     console.error('Error fetching categories:', error.response || error);
@@ -44,9 +44,9 @@ const saveProduct = async () => {
   isLoading.value = true
   try {
     if (newProduct.value.id) {
-      await axios.put(`http://localhost:8000/api/products/${newProduct.value.id}/`, newProduct.value)
+      await axios.put(`https://sioms-internship.onrender.com/api/products/${newProduct.value.id}/`, newProduct.value)
     } else {
-      await axios.post('http://localhost:8000/api/products/', newProduct.value)
+      await axios.post('https://sioms-internship.onrender.com/api/products/', newProduct.value)
     }
     newProduct.value = { name: '', category_id: null, stock: 0, price: 0 }
     showAddForm.value = false
@@ -67,7 +67,7 @@ const editProduct = (product) => {
 const deleteProduct = async (id) => {
   if (!confirm('Delete this product?')) return
   try {
-    await axios.delete(`http://localhost:8000/api/products/${id}/`)
+    await axios.delete(`https://sioms-internship.onrender.com/api/products/${id}/`)
     await fetchProducts()
     alert('Product deleted')
   } catch (error) {

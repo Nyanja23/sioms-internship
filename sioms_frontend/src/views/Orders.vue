@@ -19,7 +19,7 @@ const authStore = useAuthStore()
 
 const fetchOrders = async ()=>{
     try{
-        const response = await axios.get('http://localhost:8000/api/orders/');
+        const response = await axios.get('https://sioms-internship.onrender.com/api/orders/');
         
         orders.value = response.data;
 
@@ -33,7 +33,7 @@ const fetchOrders = async ()=>{
 
 const fetchCustomers = async ()=>{
     try{
-        const response = await axios.get('http://localhost:8000/api/customers/');
+        const response = await axios.get('https://sioms-internship.onrender.com/api/customers/');
         customers.value = response.data;
 
     }catch(error){
@@ -44,7 +44,7 @@ const fetchCustomers = async ()=>{
 
 const fetchProducts = async ()=>{
     try{
-        const response = await axios.get('http://localhost:8000/api/products/')
+        const response = await axios.get('https://sioms-internship.onrender.com/api/products/')
         products.value = response.data;
     }catch(error){
         alert('Failed to Load Products')
@@ -67,7 +67,7 @@ const addOrder = async ()=>{
     try{
         newOrder.value.total = newOrder.value.items.reduce((sum, item)=> sum + item.quantity *  item.price , 0);
 
-        await axios.post('http://localhost:8000/api/orders/',newOrder.value);
+        await axios.post('https://sioms-internship.onrender.com/api/orders/',newOrder.value);
 
         newOrder.value = { 
             customer_id: null,
