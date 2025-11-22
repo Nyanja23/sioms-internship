@@ -1,4 +1,5 @@
 {
-  "builds": [{ "src": "sioms_frontend/package.json", "use": "@vercel/static-build" }],
-  "routes": [{ "src": "/(.*)", "dest": "/sioms_frontend/dist/index.html" }]
+  "buildCommand": "cd sioms_frontend && npm install && npm run build",
+  "outputDirectory": "sioms_frontend/dist",
+  "framework": "vue"
 }
